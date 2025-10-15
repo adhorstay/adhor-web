@@ -4,71 +4,159 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Adhor — Noleggio proprietà a ore</title>
-  <meta name="description" content="Spazi eleganti disponibili a ore. Prenotazione semplice, check-in smart, totale privacy." />
+  <meta name="description" content="Spazi eleganti disponibili a ore. Prenotazione semplice, check-in smart, totale privacy.">
   <meta name="theme-color" content="#0b0c10" />
-  <meta property="og:title" content="Adhor — Noleggio a ore" />
-  <meta property="og:description" content="Spazi eleganti disponibili a ore. Prenotazione semplice, check-in smart, totale privacy." />
-  <meta property="og:type" content="website" />
   <link rel="icon" href="./assets/logo.png" type="image/png">
   <style>
-    :root{
+    :root {
       --bg:#0b0c10; --panel:#11131a; --ink:#e9e9ee; --muted:#a6a8b0; --line:#262a3a;
       --brand:#b9b4ff; --accent:#8ad8ff; --radius:16px; --max:1024px;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
-    body{font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; background:radial-gradient(80rem 80rem at 100% -10%, #171a25 10%, transparent), var(--bg); color:var(--ink); line-height:1.6;}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      background:radial-gradient(80rem 80rem at 100% -10%, #171a25 10%, transparent), var(--bg);
+      color:var(--ink); line-height:1.6;
+    }
     img{max-width:100%;display:block;border-radius:12px}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--max); margin-inline:auto; padding:clamp(16px,2vw,24px)}
+    a{color:inherit;text-decoration:none;cursor:pointer}
+    html{scroll-behavior:smooth;}
+    section[id]{scroll-margin-top:90px;}
+    .container{max-width:var(--max);margin-inline:auto;padding:clamp(16px,2vw,24px)}
     .section{padding-block:clamp(40px,8vw,120px)}
-    h1,h2,h3{line-height:1.15; margin:0 0 .5rem}
+    h1,h2,h3{line-height:1.15;margin:0 0 .5rem}
     h1{font-size:clamp(2rem,4vw,3.25rem)}
     h2{font-size:clamp(1.5rem,3vw,2.25rem)}
-    h3{font-size:1.125rem}
-    p{margin:0 0 1rem; color:var(--muted)}
+    p{margin:0 0 1rem;color:var(--muted)}
 
-    /* Header */
-    .hdr{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px); background:color-mix(in oklab, var(--bg) 84%, transparent); border-bottom:1px solid var(--line)}
-    .hdr .inner{display:flex; align-items:center; gap:16px}
-    .logo img{height:40px; display:block}
-    .nav{margin-left:auto; display:flex; gap:16px; align-items:center}
-    .btn{background:linear-gradient(135deg,var(--accent),var(--brand)); padding:.7rem 1rem; border-radius:999px; color:#0b0c10; font-weight:600; display:inline-block}
-    .btn.outline{background:transparent; border:1px solid var(--line); color:var(--ink)}
+    .hdr{position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:color-mix(in oklab,var(--bg) 84%,transparent);
+      border-bottom:1px solid var(--line)}
+    .hdr .inner{display:flex;align-items:center;gap:16px}
+    .logo img{height:40px;display:block}
+    .nav{margin-left:auto;display:flex;gap:16px;align-items:center}
+    .btn{background:linear-gradient(135deg,var(--accent),var(--brand));
+      padding:.7rem 1rem;border-radius:999px;color:#0b0c10;font-weight:600;display:inline-block}
+    .btn.outline{background:transparent;border:1px solid var(--line);color:var(--ink)}
 
-    /* Hero */
-    .hero{display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:clamp(20px,3vw,40px);}
-    .badge{display:inline-flex; align-items:center; gap:8px; font-size:.85rem; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:6px 10px}
-    .cta{display:flex; gap:12px; margin-top:14px}
-    .frame{background:linear-gradient(180deg,#141826,#0c0f18); border:1px solid var(--line); border-radius:var(--radius); padding:14px; box-shadow:0 20px 60px rgba(0,0,0,.45)}
-
-    /* Responsive */
-    @media (max-width: 900px){
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(20px,3vw,40px)}
+    .badge{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);
+      border:1px solid var(--line);border-radius:999px;padding:6px 10px}
+    .cta{display:flex;gap:12px;margin-top:14px}
+    .frame{background:linear-gradient(180deg,#141826,#0c0f18);
+      border:1px solid var(--line);border-radius:var(--radius);
+      padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+    .grid{display:grid;gap:16px}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    .card{background:linear-gradient(180deg,#141826,#0f121b);
+      border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+    details{border:1px solid var(--line);border-radius:14px;
+      padding:14px 16px;background:linear-gradient(180deg,#131724,#0d1018)}
+    summary{cursor:pointer;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    footer{border-top:1px solid var(--line);background:#0a0b0f}
+    .foot{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    @media(max-width:900px){
       .hero{grid-template-columns:1fr}
+      .cols-3,.cols-2{grid-template-columns:1fr}
       .nav{display:none}
     }
   </style>
 </head>
-<body>
-  <header class="hdr">
-    <div class="inner container">
-      <a href="#home" class="logo">
-        <img src="./assets/logo.png" alt="Logo Adhor" />
-      </a>
-      <nav class="nav">
-        <a href="#spazi">Spazi</a>
-        <a href="#come-funziona">Come funziona</a>
-        <a href="#tariffe">Tariffe</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contatti" class="btn">Contatti</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Il resto del sito rimane invariato -->
-  <main class="container section">
-    <h1>Spazi eleganti, prenotabili quando ti servono.</h1>
-    <p>Appartamenti curati per meeting privati, shooting e pause di lusso. Prenotazione in pochi click, accesso con smart lock, totale riservatezza.</p>
-  </main>
+<body>
+<header class="hdr">
+  <div class="inner container">
+    <a href="#home" class="logo">
+      <img src="./assets/logo.png" alt="Logo Adhor" />
+    </a>
+    <nav class="nav">
+      <a href="#spazi">Spazi</a>
+      <a href="#come-funziona">Come funziona</a>
+      <a href="#tariffe">Tariffe</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contatti" class="btn">Contatti</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home" class="container section">
+  <section class="hero">
+    <div>
+      <span class="badge">Noleggio a ore • Check-in smart</span>
+      <h1>Spazi eleganti, prenotabili <em>quando</em> ti servono.</h1>
+      <p>Appartamenti curati per meeting privati, shooting, pause di lusso. Prenotazione in pochi click, accesso con smart lock, totale riservatezza.</p>
+      <div class="cta">
+        <a class="btn" href="#contatti">Richiedi disponibilità</a>
+        <a class="btn outline" href="#spazi">Guarda gli spazi</a>
+      </div>
+    </div>
+    <div class="frame">
+      <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1400&auto=format&fit=crop" alt="Interno elegante" width="1200" height="800" loading="eager">
+    </div>
+  </section>
+</main>
+
+<section id="spazi" class="container section">
+  <h2>Gli spazi</h2>
+  <p>Location selezionate con arredo essenziale, luce naturale e finiture di qualità.</p>
+</section>
+
+<section id="come-funziona" class="container section">
+  <h2>Come funziona</h2>
+  <p>Scelta orario → Ricevi check-in → Entra e goditi lo spazio.</p>
+</section>
+
+<section id="tariffe" class="container section">
+  <h2>Tariffe trasparenti</h2>
+  <p>Da €39/ora (minimo 2h). Quotazioni personalizzate per mezza giornata o giornate intere.</p>
+</section>
+
+<section id="faq" class="container section">
+  <h2>FAQ</h2>
+  <details open><summary><b>È richiesta una cauzione?</b></summary><p>Solo in alcune proprietà.</p></details>
+  <details><summary><b>Come avviene il check-in?</b></summary><p>Con codice smart lock personale.</p></details>
+</section>
+
+<section id="contatti" class="container section">
+  <h2>Contatti</h2>
+  <p>Scrivici con data, orario e spazio preferito. Ti rispondiamo rapidamente.</p>
+  <form id="contact">
+    <label>Nome<input name="name" required></label>
+    <label>Email<input type="email" name="email" required></label>
+    <label>Messaggio<textarea name="message" rows="5" required></textarea></label>
+    <button class="btn" type="submit">Invia richiesta</button>
+    <p class="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<footer>
+  <div class="container foot">
+    <small>© <span id="year"></span> Adhor — Tutti i diritti riservati</small>
+    <a href="#home" aria-label="Torna su">↑</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+document.querySelectorAll('a[href^=\"#\"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    const t=document.querySelector(id);
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+const form=document.getElementById('contact');
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const d=new FormData(form);
+  const body=encodeURIComponent(`Nome: ${d.get('name')}\nEmail: ${d.get('email')}\n\n${d.get('message')}`);
+  window.location.href=`mailto:info@adhor.it?subject=Richiesta disponibilità&body=${body}`;
+  form.querySelector('.status').textContent='Sto aprendo il tuo client email…';
+});
+</script>
 </body>
 </html>
