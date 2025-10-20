@@ -7,36 +7,95 @@
   <meta name="description" content="Discover now the easiest way to rent a house hourly. For every kind of experience.">
   <link rel="icon" href="./assets/logo.png" type="image/png" />
   <style>
-    :root{ --bg:#f2f2f2; --paper:#f8f8f8; --ink:#111; --line:#1e1e1e; --max:1600px; }
+    :root{
+      --bg:#2f2f2f;        /* grigio laterale (solo sfondo pagina) */
+      --paper:#f6f6f6;     /* pannello chiaro */
+      --ink:#111;          /* testo */
+      --line:#1e1e1e;      /* righe sottili */
+      --max:1600px;        /* larghezza massima del layout */
+      --padX:80px;         /* padding orizzontale principale */
+      --padY:80px;
+    }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{ background:var(--bg); color:var(--ink); font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; line-height:1.3; -webkit-font-smoothing:antialiased; }
+    body{
+      background:var(--bg);
+      color:var(--ink);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height:1.3;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
     a{color:inherit;text-decoration:none}
 
-    /* contenitore centrale, full width (niente cornici) */
-    .wrap{ max-width:var(--max); margin:0 auto; background:#fff; }
+    /* contenitore centrale – nessuna cornice, solo righe orizzontali */
+    .wrap{max-width:var(--max);margin:0 auto;background:#fff}
 
-    /* HEADER */
-    header{ display:grid; grid-template-columns:1.1fr 1.4fr; border-bottom:1px solid var(--line); background:#fff; }
-    .brand{ padding:18px 24px; border-right:1px solid var(--line); font-family: "Times New Roman", serif; font-size:26px; letter-spacing:.2px; }
-    nav{ padding:18px 24px; display:flex; justify-content:flex-end; align-items:center; gap:28px; font-family:"Courier New", monospace; font-size:12px; text-transform:uppercase; letter-spacing:.1em; }
+    /* HEADER (come reference: brand a sx, menu a dx con riga sotto) */
+    header{
+      display:grid;
+      grid-template-columns: 1.1fr 1.4fr;
+      border-bottom:1px solid var(--line);
+      background:#fff;
+    }
+    .brand{
+      padding:18px var(--padX);
+      border-right:1px solid var(--line);
+      font-family: "Times New Roman", Times, serif;
+      font-size:28px;
+      letter-spacing:.2px;
+    }
+    nav{
+      padding:18px var(--padX);
+      display:flex;justify-content:flex-end;align-items:center;gap:28px;
+      font-family: "Courier New", Courier, monospace;
+      font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:600;
+    }
 
-    /* HERO TESTUALE (senza immagine) */
-    .hero{ display:grid; grid-template-columns:1.1fr 1.4fr; border-bottom:1px solid var(--line); background:var(--paper); min-height:420px; }
-    .hero-left{ padding:70px 24px 36px 24px; display:flex; flex-direction:column; }
-    .hero-left h1{ font-weight:700; font-size: clamp(48px, 5vw, 68px); text-transform:uppercase; letter-spacing:-0.01em; line-height:.9; }
-    .city{ font-family:"Courier New", monospace; font-size:12px; text-transform:uppercase; letter-spacing:.15em; margin-top:46px; }
-    .hero-right{ padding:70px 24px 36px 24px; display:flex; flex-direction:column; justify-content:flex-start; }
-    .copy{ font-family:"Courier New", monospace; font-size:14px; text-transform:uppercase; letter-spacing:.15em; line-height:1.7; white-space:pre-line; }
+    /* HERO TESTUALE (nessuna immagine) */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.1fr 1.4fr;  /* proporzioni come nel mock */
+      background:var(--paper);
+      border-bottom:1px solid var(--line);
+      min-height:480px;
+    }
+    .hero-left{
+      padding:var(--padY) var(--padX) 56px var(--padX);
+      display:flex;flex-direction:column;
+    }
+    .h1{
+      text-transform:uppercase;
+      font-weight:800;
+      letter-spacing:-0.01em;
+      line-height:.9;
+      font-size:clamp(56px, 7vw, 104px);   /* grande come nel reference */
+    }
+    .city{
+      margin-top:48px;
+      font-family: "Courier New", Courier, monospace;
+      font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+    }
+    .hero-right{
+      padding:var(--padY) var(--padX) 56px var(--padX);
+      display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;
+    }
+    .copy{
+      font-family: "Courier New", Courier, monospace;
+      font-size:14px; text-transform:uppercase; letter-spacing:.18em; line-height:1.8;
+      max-width:560px;             /* blocco stretto come nel tuo shot */
+    }
+    .copy br{content:"";}
 
-    /* sezioni segnaposto (svilupperemo dopo) */
-    section[id]{ scroll-margin-top:80px }
-    html{ scroll-behavior:smooth }
+    /* ancore + responsive */
+    html{scroll-behavior:smooth}
+    section[id]{scroll-margin-top:80px}
 
-    @media (max-width: 960px){
-      header,.hero{ grid-template-columns:1fr }
-      .brand{ border-right:none; border-bottom:1px solid var(--line) }
-      nav{ justify-content:flex-start }
-      .city{ margin-top:24px }
+    @media (max-width: 980px){
+      header,.hero{grid-template-columns:1fr}
+      .brand{border-right:none;border-bottom:1px solid var(--line)}
+      nav{justify-content:flex-start}
+      :root{ --padX:24px; --padY:48px }
+      .city{margin-top:24px}
     }
   </style>
 </head>
@@ -52,18 +111,22 @@
       </nav>
     </header>
 
-    <!-- HERO TESTUALE (allineato come nello screenshot) -->
+    <!-- HERO TESTUALE allineato come reference -->
     <section class="hero" id="home">
       <div class="hero-left">
-        <h1>Short rent<br>made simple</h1>
+        <h1 class="h1">Short rent<br>made simple</h1>
         <p class="city">Sede Milano Rogoredo</p>
       </div>
       <div class="hero-right">
-        <p class="copy">Discover now the easiest way to rent\nAN HOUSE HOURLY\n\nFOR EVERY KIND OF EXPERIENCE.</p>
+        <p class="copy">
+          Discover now the easiest way to rent<br>
+          an house hourly<br><br>
+          for every kind of experience.
+        </p>
       </div>
     </section>
 
-    <!-- PLACEHOLDER SEZIONI (svilupperemo dopo) -->
+    <!-- segnaposto sezioni per scroll one-page -->
     <section id="chi-siamo"></section>
     <section id="immobili"></section>
     <section id="candidatura"></section>
